@@ -1,0 +1,22 @@
+{
+  "name": "rbot-sub",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ronge-0716/Rbot-sub-js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ronge-0716/Rbot-sub-js/issues"
+  },
+  "homepage": "https://github.com/ronge-0716/Rbot-sub-js#readme",
+  "dependencies": {
+    "discord.js": "^11.5.1"
+  }
+}
