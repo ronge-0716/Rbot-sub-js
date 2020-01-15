@@ -22,7 +22,7 @@ message.channel.send(` Ping を確認しています...`)
   if(command  === 'help'){
     message.channel.send({
       embed:{
-        title:"シンキングをひたすらに愛するBotのヘルプです",
+        title:"Rbot-subのヘルプです",
         color:Math.floor(Math.random()* 100000),
         footer:{
           text:"©ろんげ･|9 Ø /V (?, €#6269",
