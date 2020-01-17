@@ -37,6 +37,41 @@ message.channel.send(` Ping を確認しています...`)
       }
     })
   }//bot説明
+	  if(command === "sjoin") {
+    message.channel.send(
+        {embed:{
+          title:'bot導入サーバー',
+           color: 3066993,
+          description: (bot.guilds.map(g => g.name).join("\n")),
+          fields: [{
+            name: "導入サーバー数",
+            value: `${bot.guilds.size}サーバー` },
+          ]
+        }
+      }
+      );
+
+  }
+
+if (command === "info"){
+    if(message.author.id == '502816456052834314'){
+const infoMessage = args.join(" ");
+const infoch_name = "rbot-info";
+bot.channels.forEach(channel => {
+if (channel.name === "rbot-info"){
+channel.send({embed:{
+  title:'Rbotインフォ',
+  color: 3066993,
+  timestamp: new Date(),
+  thumbnail: {
+    url: message.guild.iconURL
+  },
+  description: (infoMessage),
+}});
+}
+});
+}else{message.channel.send('あなたはこのコマンドを実行できません！')}
+  }
 
 });
 
