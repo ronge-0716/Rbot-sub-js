@@ -50,7 +50,21 @@ bot.user.setPresence({ game: { name: "[rs!help]でヘルプを表示!Rbotのサ�
           channel.send(
   {embed: {
     color: 753684,
-    description: 'Rbot-subが起動しました！'
+    description: 'Rbot-subが起動しました！',
+    fields:[
+      {
+        name:"認識しているサーバー数",
+        value:bot.guilds.size
+      },
+      {
+        name:"認識しているチャンネル数",
+        value:bot.channels.size
+      },
+      {
+        name:"認識している人数",
+        value:bot.users.size
+      },
+    ]
   }}
 );
             return;
