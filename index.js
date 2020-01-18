@@ -90,6 +90,8 @@ bot.user.setPresence({ game: { name: "[rs!help]でヘルプを表示!Rbotのサ�
     });
 });
 
+bot.on('message', async (msg) => {
+
   if (!msg.content.toLowerCase().startsWith(config.prefix) || msg.author.bot) return;
   const args = msg.content.slice(config.prefix.length).split(/ +/g);
   const command = args.shift().toLowerCase();
