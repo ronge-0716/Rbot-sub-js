@@ -37,6 +37,7 @@ message.channel.send(` Ping を確認しています...`)
       }
     })
   }//bot説明
+  
 	  if(command === "sjoin") {
     message.channel.send(
         {embed:{
