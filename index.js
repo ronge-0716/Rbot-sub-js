@@ -108,6 +108,81 @@ bot.user.setPresence({ game: { name: "[rs!help]でヘルプを表示!Rbotのサ�
     });
 });
 
+bot.on('message', async (msg) => {
+
+  if (!msg.content.toLowerCase().startsWith(config.prefix) || msg.author.bot) return;
+  const args = msg.content.slice(config.prefix.length).split(/ +/g);
+  const command = args.shift().toLowerCase();
+
+  if (command == 'help') {
+    msg.delete()
+    const options = { limit: 15 * 1000, min: 1, max: 10, page: 1}
+
+
+//helpのページ
+    const pages = {
+      1: {title:"Rbotのヘルプです",
+          color:3066993,
+          description:"下にあるリアクションを押してページ移動してください\nゴミ箱のリアクションを押すとこの埋め込みを消すことができます",
+          footer:{
+            text:"1/10"
+          }
+    },//ページ1
+    }
+//helpのページ
+
+    const awaitReactions = async (msg, m, options, filter) => {
+      const { min, max, page, limit } = options;
+      m.awaitReactions(filter, { max: 1, time: limit, errors: ['time'] })
+        .then(async (collected) => {
+        const reaction = collected.first()
+
+        if (reaction.emoji.name === '⬅') {
+      await removeReaction(m, msg, '⬅');
+      if (options.page != options.min) {
+      options.page = options.page - 1;
+      await m.edit({ embed: pages[options.page] });
+      }
+  awaitReactions(msg, m, options, filter);
+        }
+
+    else if (reaction.emoji.name === '➡') {
+  await removeReaction(m, msg, '➡');
+  if (options.page != options.max) {
+      options.page = options.page + 1;
+      await m.edit({ embed: pages[options.page] });
+  }
+  awaitReactions(msg, m, options, filter);
+    }
+
+    else if (reaction.emoji.name === '🗑') {
+  return await m.delete();
+    }
+    else {
+      awaitReactions(msg, m, options, filter);
+    };
+
+
+
+        }).catch(() => {});
+}
+
+    const m = await msg.channel.send({ embed: pages[options.page] });
+    await m.react('⬅');
+    await m.react('➡');
+    await m.react('🗑');
+
+    const filter = (reaction, user) => {
+      return ['⬅', '➡', '🗑'].includes(reaction.emoji.name) && user.id == msg.author.id;
+    };
+    awaitReactions(msg, m, options, filter);
+    const removeReaction = async (m, msg, emoji) => {
+  try { m.reactions.find(r => r.emoji.name == emoji).users.remove(msg.author.id); } catch(err) {}
+    }
+
+    }//command helpの()
+});//client.onの()
+
 bot.on('message', async message => {
   const { inspect } = require('util');
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
