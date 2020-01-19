@@ -3,22 +3,22 @@ const config = require('./config.json');
 const bot = new discord.Client();
 
 bot.on('message', (message) => {
-  
+
   	if(message.isMemberMentioned(bot.user))
 	{
 		message.reply( '呼びましたか？' );
 		return;
 	}
-  
+
     if(message.content.indexOf(config.prefix) !== 0) return;
 const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
 const command = args.shift().toLowerCase();
-  
+
   if(command === "ping") {
 message.channel.send(` Ping を確認しています...`)
         .then((pingcheck) => pingcheck.edit(`botの速度|${pingcheck.createdTimestamp - message.createdTimestamp} ms\nAPIの速度|${Math.round(bot.ping)}ms`))
   }//ping
-  
+
   if(command  === 'help'){
     message.channel.send({
       embed:{
@@ -55,21 +55,21 @@ message.channel.send(` Ping を確認しています...`)
 
 if (command === "info"){
     if(message.author.id == '502816456052834314'){
-const infoMessage = args.join(" ");
-const infoch_name = "rbot-info";
-bot.channels.forEach(channel => {
-if (channel.name === "rbot-info"){
-channel.send({embed:{
-  title:'Rbotインフォ',
-  color: 3066993,
-  timestamp: new Date(),
-  thumbnail: {
-    url: message.guild.iconURL
-  },
-  description: (infoMessage),
-}});
-}
-});
+      const infoMessage = args.join(" ");
+      const infoch_name = "rbot-info";
+      bot.channels.forEach(channel => {
+        if (channel.name === "rbot-info"){
+          channel.send({embed:{
+              title:'Rbotインフォ',
+              color: 3066993,
+              timestamp: new Date(),
+                thumbnail: {
+                  url: message.guild.iconURL
+                },
+              description: (infoMessage),
+            }});
+          }
+        });
 }else{message.channel.send('あなたはこのコマンドを実行できません！')}
   }
 
@@ -78,7 +78,7 @@ channel.send({embed:{
 bot.on('ready', message =>
 {
 	console.log('Rbotsb is doing now');
-bot.user.setPresence({ game: { name: "[rs!help]でヘルプを表示!Rbotのサブbotです！"} });  
+bot.user.setPresence({ game: { name: "[rs!help]でヘルプを表示!Rbotのサブbotです！"} });
   bot.channels.forEach(channel => {
       const ch_name = "rbot起動ログ";
        if (channel.name === ch_name) {
