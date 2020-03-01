@@ -18,25 +18,6 @@ const command = args.shift().toLowerCase();
 message.channel.send(` Ping を確認しています...`)
         .then((pingcheck) => pingcheck.edit(`botの速度|${pingcheck.createdTimestamp - message.createdTimestamp} ms\nAPIの速度|${Math.round(bot.ping)}ms`))
   }//ping
-
-  if(command  === 'help'){
-    message.channel.send({
-      embed:{
-        title:"Rbot-subのヘルプです",
-        color:Math.floor(Math.random()* 100000),
-        footer:{
-          text:"©ろんげ･|9 Ø /V (?, €#6269",
-        },
-        description:"今はほとんど機能ないです...すいません...",
-        fields:[
-          {
-            name:"ping",
-            value:"botの速さです"
-          },
-        ]
-      }
-    })
-  }//bot説明
   
 	  if(command === "sjoin") {
     message.channel.send(
@@ -122,13 +103,17 @@ bot.on('message', async (msg) => {
 
 //helpのページ
     const pages = {
-      1: {title:"Rbotのヘルプです",
-          color:3066993,
-          description:"下にあるリアクションを押してページ移動してください\nゴミ箱のリアクションを押すとこの埋め込みを消すことができます",
-          footer:{
-            text:"1/10"
-          }
+      1: {
+        title:"Rbot-subのヘルプです",
+        color:3066993,
+        description:"下にあるリアクションを押してページ移動してください\nゴミ箱のリアクションを押すとこの埋め込みを消すことができます",
+        footer:{
+          text:"1/10"
+        }
     },//ページ1
+      2: {
+        title:"作成中..."
+      }
     }
 //helpのページ
 
