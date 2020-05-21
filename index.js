@@ -170,14 +170,13 @@ bot.on('message', async (msg) => {
 });//client.onの()
 
 bot.on('message', async message => {
-	if(message.content.indexOf(config.prefix) !== 0) return;
   const { inspect } = require('util');
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase()
 
   if (command === 'eval') {
     // Put your userID here
-    if (message.author.id !== '502816456052834314', '502816456052834314') {
+    if (message.author.id == '502816456052834314', '502816456052834314') {
 
     let evaled;
     try {
