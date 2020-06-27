@@ -177,7 +177,7 @@ bot.on('message', async message => {
 
   if (command === 'eval') {
     // Put your userID here
-    if (message.author.id == '502816456052834314' or message.author.id == '502816456052834314') {
+    if (message.author.id == '502816456052834314'  message.author.id == '502816456052834314') {
 
     let evaled;
     try {
